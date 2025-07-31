@@ -4,6 +4,8 @@ from django.contrib.auth import views
 from .forms import UserLoginForm
 from . import views as v
 
+app_name = 'users'
+
 urlpatterns = [
     path('', v.register, name='register'),
     path('company/', v.CompanySignUpView.as_view(), name='register_company'),

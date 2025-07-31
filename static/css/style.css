@@ -37,6 +37,15 @@ button:hover {
   color: #f9f8fd;
 }
 
+::placeholder {
+  columns: #000;
+  opacity: 1;
+}
+
+form label {
+ display: black !important;
+}
+
 .content {
   background-color: #646464;
   margin: 0 auto;
@@ -278,17 +287,10 @@ pre {
   box-shadow: 0px 0px 9px 5px black;
 }
 
-.label_images {
-  display: block;
-}
-
 /* ============================================================================================== */
 
 /* =========================================== Forms ============================================ */
 
-form label {
-  display: none;
-}
 
 form {
   margin: 0 auto;
@@ -296,9 +298,9 @@ form {
   width: 65%;
 }
 
-/* form ul {
-  display: none;
-} */
+form ul {
+  display: black !important;
+}
 
 form input {
   padding: 10px 3px;
@@ -363,3 +365,8 @@ span {
 }
 
 /* ============================================================================================== */
+
+.choice-image {
+  width: 100px;
+  height: auto;
+}

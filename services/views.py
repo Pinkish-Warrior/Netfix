@@ -18,7 +18,17 @@ def index(request, id):
 
 
 def create(request):
-    return render(request, 'services/create.html', {})
+    if request.method == "POST":
+        form = CreateNewService(request.POST)
+        if form.is_valid():
+            service = form.save(commit=False)
+            service.company = Company.objects.get(user=request.user)
+            service.field = service.company.field
+            service.save()
+            return redirect('services_list')
+    else:
+        form = CreateNewService()
+    return render(request, 'services/create.html', {'form': form})
 
 
 def service_field(request, field):
@@ -30,4 +40,15 @@ def service_field(request, field):
 
 
 def request_service(request, id):
-    return render(request, 'services/request_service.html', {})
+    service = Service.objects.get(id=id)
+    if request.method == "POST":
+        form = RequestServiceForm(request.POST)
+        if form.is_valid():
+            service_request = form.save(commit=False)
+            service_request.customer = Customer.objects.get(user=request.user)
+            service_request.service = service
+            service_request.save()
+            return redirect('services_list')
+    else:
+        form = RequestServiceForm()
+    return render(request, 'services/request_service.html', {'form': form, 'service': service})

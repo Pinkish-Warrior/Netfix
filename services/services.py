@@ -24,4 +24,7 @@ class CreateNewService(forms.Form):
 
 
 class RequestServiceForm(forms.Form):
-    pass
+    request_description = forms.CharField(
+        widget=forms.Textarea, label='Request Description'
+    )
+    

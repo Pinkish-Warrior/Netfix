@@ -1,11 +1,24 @@
 {% extends 'main/base.html' %}
+
 {% block title %}
     Request Service
 {% endblock %}
 
 {% block content %}
     <p class="title">Service Request Details</p>
+
     <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
         <button type="submit">Request</button>
     </form>
 {% endblock %}
+
